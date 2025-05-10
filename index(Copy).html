@@ -2,11 +2,9 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Innovation Hub</title>
-  <!-- ÍCONES -->
-  <script src="https://unpkg.com/feather-icons"></script>
-  <script>feather.replace();</script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     * {
       margin: 0;
@@ -16,152 +14,174 @@
     }
 
     body {
-      background: #000000;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
       color: #fff;
-      min-height: 100vh;
       overflow-x: hidden;
-      position: relative;
-    }
-
-    h1, h2, h3 {
-      font-family: 'Orbitron', sans-serif;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      min-height: 100vh;
     }
 
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 40px;
-      background: rgba(0, 0, 0, 0.8);
-      position: relative;
-      z-index: 10;
+      padding: 15px 40px;
+      background: rgba(0, 0, 0, 0.95);
+      box-shadow: 0 4px 10px #00000088;
+      z-index: 100;
     }
 
     .titulo {
-      font-size: 2.5rem;
-      color: #ff00ff;
-      letter-spacing: 2px;
-    }
-
-    .menu-toggle {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
+      font-size: 36px;
+      color: #c800ff;
+      font-weight: 700;
+      text-shadow: 0 0 8px #c800ff88;
     }
 
     .menu-toggle img {
-      width: 50px;
-      height: 50px;
+      width: 40px;
+      cursor: pointer;
     }
 
     .menu {
       display: none;
-      position: absolute;
-      top: 100%;
-      right: 30px;
-      background: rgba(0, 0, 0, 0.9);
-      padding: 10px;
-      border-radius: 10px;
       flex-direction: column;
-      gap: 15px;
+      gap: 12px;
+      position: absolute;
+      top: 70px;
+      right: 40px;
+      background: rgba(0, 0, 0, 0.95);
+      padding: 15px 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px #000;
     }
 
     .menu a {
       color: #fff;
       text-decoration: none;
-      font-size: 18px;
-      transition: color 0.3s;
+      font-weight: 500;
+      transition: 0.3s;
     }
 
     .menu a:hover {
-      color: #ff00ff;
+      color: #00c6ff;
     }
 
     .menu-ativo .menu {
       display: flex;
     }
 
-    footer {
-      background: #000000;
-      color: #fff;
-      padding: 60px 0;
-      position: relative;
+    .sessao {
+      padding: 50px 25px 30px;
     }
 
-    .footer-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 40px;
-      position: relative;
-      z-index: 2;
+    .sessao h2 {
+      color: #00f2ff;
+      margin-bottom: 30px;
+      font-size: 30px;
+      text-align: center;
+      text-shadow: 0 0 10px #00f2ff88;
     }
 
-    .footer-container h2 {
-      font-size: 1.8rem;
-      color: #ff00ff;
-      margin-bottom: 20px;
+    .rolagem-horizontal {
+      display: flex;
+      gap: 30px;
+      overflow-x: auto;
+      padding-bottom: 20px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin;
+      scrollbar-color: #c800ff #1a1a1a;
     }
 
-    .card-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      padding: 40px;
+    .rolagem-horizontal::-webkit-scrollbar {
+      height: 10px;
     }
 
-    .card {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 15px;
+    .rolagem-horizontal::-webkit-scrollbar-thumb {
+      background: #c800ff;
+      border-radius: 10px;
+    }
+
+    .rolagem-horizontal::-webkit-scrollbar-track {
+      background: #111;
+    }
+
+    .painel {
+      min-width: 350px;
+      max-width: 350px;
+      background: rgba(0, 0, 0, 0.7);
+      border: 2px solid #c800ff55;
+      border-radius: 20px;
       padding: 25px;
+      box-shadow: 0 0 25px #c800ff33;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      animation: fadeInUp 0.6s ease;
+    }
+
+    .painel:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 0 30px #c800ff99;
+    }
+
+    .painel h3 {
       color: #fff;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-      transition: transform 0.3s, box-shadow 0.3s;
-      overflow: hidden;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
-    }
-
-    .card h3 {
       margin-bottom: 15px;
       font-size: 20px;
+      text-shadow: 0 0 6px #ffffff44;
     }
 
-    .card button {
-      background: #ff00ff;
+    .painel button {
+      background: linear-gradient(135deg, #c800ff, #7a00cc);
       border: none;
       color: #fff;
-      padding: 12px 25px;
-      border-radius: 8px;
+      padding: 12px 24px;
+      border-radius: 10px;
       cursor: pointer;
-      transition: background 0.3s;
+      font-weight: bold;
+      transition: 0.3s;
     }
 
-    .card button:hover {
-      background: #c800ff;
+    .painel button:hover {
+      background: linear-gradient(135deg, #ff00ff, #8000ff);
+      box-shadow: 0 0 10px #ff00ff88;
     }
 
-    @media (max-width: 480px) {
+    footer {
+      background: #000;
+      padding: 30px;
+      text-align: center;
+      color: #c800ff;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
       .titulo {
-        font-size: 2rem;
+        font-size: 26px;
       }
 
-      .menu a {
-        font-size: 16px;
+      .painel {
+        min-width: 85%;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
   </style>
 </head>
 <body>
-  <!-- Navbar -->
   <div class="navbar">
     <div class="titulo">Innovation Hub</div>
     <div class="menu-toggle" onclick="toggleMenu()">
-      <img src="https://i.imgur.com/0hnomtg.png" alt="Menu">
+      <img src="https://i.imgur.com/0hnomtg.png" alt="Menu" />
     </div>
     <div class="menu">
       <a href="#">Início</a>
@@ -170,414 +190,128 @@
     </div>
   </div>
 
-  
-  
-  
-  <!-- conteúdo do bloco de scripts-->
-
-  <style>
-  body {
-    margin: 0;
-    background: #1a1a2e;
-    color: white;
-    font-family: 'Segoe UI', sans-serif;
-    min-height: 100vh;
-  }
-
-  .painel-scripts {
-    padding: 5px;
-    overflow-x: hidden;
-    }
-
-    .painel-scripts {
-      background: #1a1a2e;
-      color: white;
-      font-family: 'Segoe UI', sans-serif;
-      padding: 20px;
-      overflow-x: hidden;
-    }
-
-    .painel-scripts header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .painel-scripts header h1 {
-      font-size: 2em;
-      color: #00ffd5;
-    }
-
-    .painel-scripts .scroll-container {
-      display: flex;
-      gap: 20px;
-      overflow-x: auto;
-      padding: 10px 0;
-      scroll-snap-type: x mandatory;
-    }
-
-    .painel-scripts .scroll-container::-webkit-scrollbar {
-      height: 8px;
-    }
-
-    .painel-scripts .scroll-container::-webkit-scrollbar-thumb {
-      background: #00ffd5;
-      border-radius: 10px;
-    }
-
-    .painel-scripts .card {
-      flex: 0 0 300px;
-      background: #2c2c3e;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0, 255, 200, 0.1);
-      text-align: center;
-      transition: transform 0.3s;
-      scroll-snap-align: start;
-    }
-
-    .painel-scripts .card:hover {
-      transform: scale(1.03);
-    }
-
-    .painel-scripts .card h3 {
-      margin-bottom: 15px;
-      font-size: 18px;
-    }
-
-    .painel-scripts .card button {
-      padding: 12px 20px;
-      border: none;
-      border-radius: 8px;
-      background: linear-gradient(270deg, #a259ff, #6a0dad);
-      color: white;
-      cursor: pointer;
-      font-size: 15px;
-      transition: background-color 0.3s;
-    }
-
-    .painel-scripts .card button:hover {
-      background: linear-gradient(270deg, #a259ff, #6a0dad);
-    }
-
-    .painel-scripts .discord {
-      background-color: #0091cb !important;
-    }
-
-    .painel-scripts .discord:hover {
-      background-color: #0091cb !important;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="painel-scripts">
-    <header>
-      <h1>Scripts e Sala do Futuro
-</h1>
-    </header>
-
-    <div class="scroll-container">
-
-      <div class="card">
+  <!-- SCRIPTS -->
+  <div class="sessao">
+    <h2>Scripts</h2>
+    <div class="rolagem-horizontal">
+      <div class="painel">
         <h3>Script Khan Academy V1</h3>
-        <button onclick="copiarTexto(`javascript:(function(){fetch('https://raw.githubusercontent.com/ScxttZarek/KhanInnovate/main/SCRIPT.js').then(t => t.text()).then(script => eval(script)).catch(error => console.error('Erro ao carregar o script:', error));})();`)">
-          Copiar Script
-        </button>
+        <button onclick="copiarTexto(`javascript:(function(){fetch('https://raw.githubusercontent.com/ScxttZarek/KhanInnovate/main/SCRIPT.js').then(t => t.text()).then(script => eval(script)).catch(error => console.error('Erro ao carregar o script:', error));})();`)">Copiar Script</button>
       </div>
+   
 
-      <div class="card">
+<div class="painel">
   <h3>Script Khan Academy CVA V2</h3>
-  <button onclick="copiarCVA()">Copiar Script</button>
+  <button onclick="copiarScript()">Copiar Script</button>
 </div>
-      
-      
-      <script>
-  function copiarTexto(texto) {
-    const temp = document.createElement("textarea");
-    temp.value = texto;
-    document.body.appendChild(temp);
-    temp.select();
-    document.execCommand("copy");
-    document.body.removeChild(temp);
-    alert("Script copiado!");
-  }
 
-  function copiarCVA() {
-    const scriptCVA = `javascript:(()=>{const style='#cva-panel{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);color:white;border-radius:25px;padding:30px;font-family:\\'Segoe UI\\',sans-serif;text-align:center;width:400px;box-shadow:0 0 50px rgba(0,0,0,0.8);z-index:9999;}#cva-panel input{width:90%;padding:12px;margin:10px 0;border:none;border-radius:10px;outline:none;font-size:15px;background:#fff;color:#333;}#cva-panel button{background-color:#ff4b2b;color:#fff;padding:12px 25px;border:none;border-radius:20px;cursor:pointer;font-size:16px;transition:background 0.3s;margin-bottom:10px;}#cva-panel button:hover{background-color:#ff416c;}#cva-panel .cva-title{font-size:24px;font-weight:bold;margin-bottom:15px;}#cva-panel .cva-message{color:#f8d7da;margin-bottom:10px;}#cva-panel .cva-footer{margin-top:15px;font-size:14px;}#cva-panel .cva-footer a{color:#00bfff;text-decoration:none;}#cva-messages-top,#cva-messages-bottom{position:fixed;left:50%;transform:translateX(-50%);background:#28a745;color:#fff;padding:10px 20px;border-radius:20px;font-size:16px;box-shadow:0 0 20px rgba(0,0,0,0.5);z-index:9999;display:none;align-items:center;gap:10px;}#cva-messages-top{top:20px;}#cva-messages-bottom{bottom:20px;}';const styleEl=document.createElement('style');styleEl.innerHTML=style;document.head.appendChild(styleEl);const panel=document.createElement('div');panel.id='cva-panel';panel.innerHTML='<div class="cva-title">BEM❤️VINDO AO (𝓒𝓥𝓐)</div><input type="text" id="cva-username" placeholder="Usuário"><input type="password" id="cva-token" placeholder="Token"><div class="cva-message"></div><button id="cva-submit">Entrar</button><div class="cva-footer">FEITO POR !Marcos Tutoriais (𝓒𝓥𝓐)<br><a href="https://discord.gg/s4m2er3d" target="_blank">ENTRAR NO DISCORD</a></div>';document.body.appendChild(panel);const msgsTop=['Script KHAN CVA iniciado com sucesso!','Tudo pronto, divirta-se com o (𝓒𝓥𝓐)!','Login realizado com sucesso!','Script carregado sem erros!','Você está pronto para usar o CVA!'];const msgsBottom=['Bem-vindo ao CVA!','Marcos Tutoriais agradece seu apoio!','Entre no nosso Discord e fique por dentro!','Aproveite e compartilhe com os amigos!','CVA: qualidade e rapidez garantidas!'];const icons=['✅','⭐','⚡','✉️','✔️'];const topBox=document.createElement('div');topBox.id='cva-messages-top';document.body.appendChild(topBox);const bottomBox=document.createElement('div');bottomBox.id='cva-messages-bottom';document.body.appendChild(bottomBox);function showMessageSequential(messages,container){let index=0;function next(){if(index>=messages.length)return;container.innerHTML=\`\${icons[index%icons.length]} \${messages[index]}\`;container.style.display='flex';setTimeout(()=>{container.style.display='none';index++;setTimeout(next,500);},3000);}next();}const submitBtn=document.getElementById('cva-submit');submitBtn.addEventListener('click',()=>{const username=document.getElementById('cva-username').value.trim();const token=document.getElementById('cva-token').value.trim();const msgDiv=document.querySelector('.cva-message');if(username&&token){msgDiv.textContent='Processando...';fetch('https://raw.githubusercontent.com/dudkckcmc/Script-do-KHAN-CVA-/main/script').then(r=>r.text()).then(script=>{eval(script);panel.remove();setTimeout(()=>{showMessageSequential(msgsTop,topBox);showMessageSequential(msgsBottom,bottomBox);},1000);}).catch(()=>{msgDiv.textContent='Erro ao carregar o script.';});}else{msgDiv.textContent='Por favor, preencha ambos os campos.';}});})();`;
-    copiarTexto(scriptCVA);
+<script>
+  function copiarScript() {
+    const codigo = `javascript:(()=>{const style=\`#cva-panel{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);color:white;border-radius:25px;padding:30px;font-family:'Segoe UI',sans-serif;text-align:center;width:400px;box-shadow:0 0 50px rgba(0,0,0,0.8);z-index:9999;}#cva-panel input{width:90%;padding:12px;margin:10px 0;border:none;border-radius:10px;outline:none;font-size:15px;background:#fff;color:#333;}#cva-panel button{background-color:#ff4b2b;color:#fff;padding:12px 25px;border:none;border-radius:20px;cursor:pointer;font-size:16px;transition:background 0.3s;margin-bottom:10px;}#cva-panel button:hover{background-color:#ff416c;}#cva-panel .cva-title{font-size:24px;font-weight:bold;margin-bottom:15px;}#cva-panel .cva-message{color:#f8d7da;margin-bottom:10px;}#cva-panel .cva-footer{margin-top:15px;font-size:14px;}#cva-panel .cva-footer a{color:#00bfff;text-decoration:none;}#cva-messages-top,#cva-messages-bottom{position:fixed;left:50%;transform:translateX(-50%);background:#28a745;color:#fff;padding:10px 20px;border-radius:20px;font-size:16px;box-shadow:0 0 20px rgba(0,0,0,0.5);z-index:9999;display:none;align-items:center;gap:10px;}#cva-messages-top{top:20px;}#cva-messages-bottom{bottom:20px;}\`;const styleEl=document.createElement('style');styleEl.innerHTML=style;document.head.appendChild(styleEl);const panel=document.createElement('div');panel.id='cva-panel';panel.innerHTML=\`<div class="cva-title">BEM❤️VINDO AO (𝓒𝓥𝓐)</div><input type="text" id="cva-username" placeholder="Usuário"><input type="password" id="cva-token" placeholder="Token"><div class="cva-message"></div><button id="cva-submit">Entrar</button><div class="cva-footer">FEITO POR !Marcos Tutoriais (𝓒𝓥𝓐)<br><a href="https://discord.gg/s4m2er3d" target="_blank">ENTRAR NO DISCORD</a></div>\`;document.body.appendChild(panel);const msgsTop=['Script KHAN CVA iniciado com sucesso!','Tudo pronto, divirta-se com o (𝓒𝓥𝓐)!','Login realizado com sucesso!','Script carregado sem erros!','Você está pronto para usar o CVA!'];const msgsBottom=['Bem-vindo ao CVA!','Marcos Tutoriais agradece seu apoio!','Entre no nosso Discord e fique por dentro!','Aproveite e compartilhe com os amigos!','CVA: qualidade e rapidez garantidas!'];const icons=['✅','⭐','⚡','✉️','✔️'];const topBox=document.createElement('div');topBox.id='cva-messages-top';document.body.appendChild(topBox);const bottomBox=document.createElement('div');bottomBox.id='cva-messages-bottom';document.body.appendChild(bottomBox);function showMessageSequential(messages,container){let index=0;function next(){if(index>=messages.length)return;container.innerHTML=\`\${icons[index%icons.length]} \${messages[index]}\`;container.style.display='flex';setTimeout(()=>{container.style.display='none';index++;setTimeout(next,500);},3000);}next();}const submitBtn=document.getElementById('cva-submit');submitBtn.addEventListener('click',()=>{const username=document.getElementById('cva-username').value.trim();const token=document.getElementById('cva-token').value.trim();const msgDiv=document.querySelector('.cva-message');if(username&&token){msgDiv.textContent='Processando...';fetch('https://raw.githubusercontent.com/dudkckcmc/Script-do-KHAN-CVA-/refs/heads/main/script').then(r=>r.text()).then(script=>{eval(script);panel.remove();setTimeout(()=>{showMessageSequential(msgsTop,topBox);showMessageSequential(msgsBottom,bottomBox);},1000);}).catch(()=>{msgDiv.textContent='Erro ao carregar o script.';});}else{msgDiv.textContent='Por favor, preencha ambos os campos.';}});})();`;
+
+    navigator.clipboard.writeText(codigo).then(() => {
+      alert("Script copiado com sucesso!");
+    }).catch(() => {
+      alert("Erro ao copiar o script.");
+    });
   }
 </script>
-    </div>
-  </div>
-
-  <script>
-    function copiarTexto(texto) {
-      const temp = document.createElement("textarea");
-      temp.value = texto;
-      document.body.appendChild(temp);
-      temp.select();
-      document.execCommand("copy");
-      document.body.removeChild(temp);
-      alert("Script copiado!");
-    }
-  </script>
 
 </body>
 </html>
+      </div>
+    </div>
+  </div>
 
-
-
-
- <!-- conteúdo do bloco de BOTS-->
-
-
-  <style>
-    .painel-scripts * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    .painel-scripts {
-      background: #1a1a2e;
-      color: white;
-      font-family: 'Segoe UI', sans-serif;
-      padding: 20px;
-      overflow-x: hidden;
-    }
-
-    .painel-scripts header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .painel-scripts header h1 {
-      font-size: 2em;
-      color: #00ffd5;
-    }
-
-    .painel-scripts .scroll-container {
-      display: flex;
-      gap: 20px;
-      overflow-x: auto;
-      padding: 10px 0;
-      scroll-snap-type: x mandatory;
-    }
-
-    .painel-scripts .scroll-container::-webkit-scrollbar {
-      height: 8px;
-    }
-
-    .painel-scripts .scroll-container::-webkit-scrollbar-thumb {
-      background: #00ffd5;
-      border-radius: 10px;
-    }
-
-    .painel-scripts .card {
-      flex: 0 0 300px;
-      background: #2c2c3e;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0, 255, 200, 0.1);
-      text-align: center;
-      transition: transform 0.3s;
-      scroll-snap-align: start;
-    }
-
-    .painel-scripts .card:hover {
-      transform: scale(1.03);
-    }
-
-    .painel-scripts .card h3 {
-      margin-bottom: 15px;
-      font-size: 18px;
-    }
-
-    .painel-scripts .card button {
-      padding: 20px 20px;
-      border: none;
-      border-radius: 8px;
-      background-color: #0091cb;
-      color: white;
-      cursor: pointer;
-      font-size: 15px;
-      transition: background-color 0.3s;
-    }
-
-    .painel-scripts .card button:hover {
-      background-color: #0091cb;
-    }
-
-    .painel-scripts .discord {
-      background-color: #0091cb !important;
-    }
-
-    .painel-scripts .discord:hover {
-      background-color: #0091cb !important;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="painel-scripts">
-    <header>
-      <h1>Bots e Sala do Futuro</h1>
-    </header>
-
-    <div class="scroll-container">
-
-
-      <div class="card">
+  <!-- BOTS -->
+  <div class="sessao">
+    <h2>Bots</h2>
+    <div class="rolagem-horizontal">
+      <div class="painel">
         <h3>Bot Tarefas</h3>
-        <button class="discord" onclick="window.location.href='https://discord.gg/Cjyc3bPV'">
-          Entrar no Discord
-        </button>
+        <button onclick="window.open('https://discord.gg/V9jmQGQM', '_blank')">Entrar no discord</button>
       </div>
-
-      <div class="card">
+      <div class="painel">
         <h3>Bot Speak</h3>
-        <button class="discord" onclick="window.location.href='https://discord.gg/Cjyc3bPV'">
-          Entrar no Discord
-        </button>
+        <button onclick="window.open('https://discord.gg/V9jmQGQM', '_blank')">Entrar no discord</button>
       </div>
-
-      <div class="card">
+      <div class="painel">
         <h3>Bot Expansão</h3>
-        <button class="discord" onclick="window.location.href='https://discord.gg/Cjyc3bPV'">
-          Entrar no Discord
-        </button>
-      </div>
-
-      <div class="card">
+        <button onclick="window.open('https://discord.gg/V9jmQGQM', '_blank')">Entrar no discord</button>
+        </div>
+        <div class="painel">
         <h3>Bot LeiaSP</h3>
-        <button class="discord" onclick="window.location.href='https://discord.gg/Cjyc3bPV'">
-          Entrar no Discord
-        </button>
+        <button onclick="window.open('https://discord.gg/V9jmQGQM', '_blank')">Entrar no discord</button>
       </div>
-
     </div>
   </div>
 
-  <script>
-    function copiarTexto(texto) {
-      const temp = document.createElement("textarea");
-      temp.value = texto;
-      document.body.appendChild(temp);
-      temp.select();
-      document.execCommand("copy");
-      document.body.removeChild(temp);
-      alert("Script copiado!");
-    }
-  </script>
+  <!-- RODAPÉ BONITO E COMPACTO -->
+<style>
+  .footer-wrapper {
+    background: rgba(0, 0, 0, 0.95);
+    padding: 20px 10px;
+    color: #ccc;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    border-top: 2px solid #a200ff;
+    margin-top: 40px;
+  }
 
-</body>
-</html>
-  
+  .footer-wrapper .creditos p {
+    margin: 6px 0;
+  }
+
+  .footer-wrapper .creditos a {
+    color: #00c3ff;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-wrapper .creditos a:hover {
+    color: #a200ff;
+    text-decoration: underline;
+  }
+
+  .footer-wrapper .icon {
+    margin-right: 6px;
+  }
+
+  .footer-wrapper .rodape-final {
+    margin-top: 12px;
+    font-size: 12px;
+    color: #777;
+  }
+</style>
+
+<div class="footer-wrapper">
+  <div class="creditos">
+    <p><span class="icon">💻</span> Créditos:</p>
+    <p><span class="icon">🔗</span> Discord: 
+      <a href="https://discord.gg/WszqeMHb" target="_blank">CMSP WEB HACKS (𝓒𝓥𝓐)</a>
+    </p>
+    <p><span class="icon">🎥</span> YouTube: 
+      <a href="https://www.youtube.com/@Marcos_FF.2904" target="_blank">Marcos_FF.2904</a>
+    </p>
+    <p><span class="icon">❤️</span> Feito com ♥ por <strong style="color: #fff;">!Marcos Tutoriais (𝓒𝓥𝓐)🥀</strong></p>
+    <div class="rodape-final">© 2025 Todos os direitos reservados.</div>
+  </div>
+</div>
 
   <script>
     function toggleMenu() {
       document.querySelector('.navbar').classList.toggle('menu-ativo');
     }
+
+    function copiarTexto(texto) {
+      navigator.clipboard.writeText(texto).then(() => {
+        alert("Script copiado com sucesso!");
+      });
+    }
   </script>
 </body>
 </html>
-
-
-<style>
-  body {
-    margin: 0;
-    background-color: #1a1a2e; /* Cor do fundo do site */
-    color: white;
-    font-family: 'Segoe UI', sans-serif;
-    min-height: 100vh;
-    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Borda no topo */
-  }
-
-  .painel-scripts {
-    padding: 5px;
-    overflow-x: hidden;
-  }
-</style>
-
-
-
-
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Rodapé fixo abaixo</title>
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-        }
-
-        main {
-            flex: 1; /* faz o conteúdo principal ocupar o espaço disponível */
-        }
-
-        footer {
-            background: #000;
-            padding: 30px 0;
-            text-align: center;
-            color: #fff;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        .footer-container p {
-            margin-bottom: 15px;
-            font-size: 0.9rem;
-        }
-
-        .footer-links {
-            font-size: 0.9rem;
-        }
-
-        .footer-links a {
-            margin: 0 8px;
-            color: #800080;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: #a64ca6;
-        }
-    </style>
-</head>
-<body>
-
-<main>
-    <!-- Seu conteúdo principal aqui -->
-</main>
-
-<footer>
-    <div class="footer-container">
-        <p>&copy; 2025 <strong>𝙸𝚗𝚘𝚟𝚊𝚝𝚒𝚘𝚗 𝙷𝚞𝚋</strong> — Todos os direitos reservados.</p>
-        <div class="footer-links">
-            <a href="#">Sobre</a> |
-            <a href="#">Contato</a> |
-            <a href="#">Privacidade</a>
-        </div>
-    </div>
-</footer>
-
-</body>
-</html>
-
-
-
-
 
 
 
@@ -782,22 +516,3 @@
 
 </body>
 </html>
-
-
-
-
-<style>
-  body {
-    margin: 0;
-    background-color: #1a1a2e; /* Cor do fundo do site */
-    color: white;
-    font-family: 'Segoe UI', sans-serif;
-    min-height: 100vh;
-    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Borda no topo */
-  }
-
-  .painel-scripts {
-    padding: 5px;
-    overflow-x: hidden;
-  }
-</style>
